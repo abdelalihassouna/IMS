@@ -1,0 +1,28 @@
+msgid ""
+msgstr ""
+"Language: bs\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+msgid "Name"
+msgstr "ime"
+
+msgid "Quantity In Stock"
+msgstr "Količina na zalihama"
+
+msgid "Quantity Sold"
+msgstr "Prodana količina"
+
+msgid "Cost Per Item"
+msgstr "Cijena po artiklu"
+
+msgid "Revenue"
+msgstr "Prihod"
+
+msgid "Stock Date"
+msgstr "Stock Date"
+
+msgid "Last Sales Date"
+msgstr "Datum posljednje prodaje"
+
+msgid "Action"
+msgstr "Akcija"

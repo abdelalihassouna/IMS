@@ -1,0 +1,56 @@
+{% extends "../layout.html" %}
+{% block title %}Register{% endblock %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<head>
+<link rel="stylesheet" href="{% static 'registration.css' %}">
+<h1 class="text-center">Register</h1>
+<form method="POST" action="">
+  {% csrf_token %}
+  <div class="form-group">
+    {{ form|crispy}}
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <div class="g-recaptcha" data-sitekey="6Ld33jYkAAAAALb_M7uRodWD1MtHi1rmNuEX4Z53"></div>
+  </div>
+  {% comment %} <sript> src="https://www.google.com/recaptcha/api.js"</script>
+    <div> class="g-recaptcha" data-sitekey="6Ld33jYkAAAAALb_M7uRodWD1MtHi1rmNuEX4Z53" </div> {% endcomment %}
+  {% comment %} <div class="mb-3">
+    <label for="username" class="form-label">User name</label>
+    {{form.username}}
+  </div>
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First name</label>
+    {{form.first_name}}
+  </div>
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last name</label>
+    {{form.last_name}}
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    {{form.email}}
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    {{form.password1}}
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+    {{form.password2}} {% endcomment %}
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+  {% if form.errors %}
+  <div class="alert alert-danger">
+    {{ form.errors|striptags }}
+  </div>
+  {% endif %}
+
+  <div class="text-center mt-3">
+    <a href="{% url 'login' %}">Already have an account? Login</a>
+  </div>
+</form>
+</head>
+{% endblock %}

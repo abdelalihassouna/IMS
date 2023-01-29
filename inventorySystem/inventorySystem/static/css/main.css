@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    width: 100%;
+    background: #ffffff;
+    background-size: 150% 150%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+/* body {
+  background-image: url('inventorySystem\\inventorySystem\\static\\img\\header.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+.content.section {
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.form-group{
+    margin-bottom: 1rem;
+}
+.btn{
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+/* Rimuovi la classe no-print solo dalla tabella */
+table.table-print {
+    display: table;
+}
+
+.no-print {
+  visibility: visible;
+  }
+  
+  .hide-element {
+  visibility: hidden;
+  }
+
+
+  .container {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+}
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease-in-out;
+}
+.btn-primary:hover {
+    background-color: #0069d9;
+    box-shadow: 0px 0px 20px rgba(0,105,217,0.5);
+}

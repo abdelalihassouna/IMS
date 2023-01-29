@@ -1,0 +1,74 @@
+{% extends '../layout.html' %}
+{% block content %}
+{% load static %}
+<div class="row">
+  <div class="col-md-12">
+      <div class="float-left">
+          <p style="margin-bottom: 0;">Data: <strong>{{ today }}</strong></p>
+          <p style="margin-bottom: 0;">Naziv ugostitelja: <strong>Kafe bar "ALFREDO"</strong></p>
+          <p style="margin-bottom: 0;">Prezime i ime (za fizicko lice):</p>
+          <p style="margin-bottom: 0;">Mjesto: <strong>Gradiska</strong></p>
+          <p style="margin-bottom: 0;">Djelatnost i grupa:</p>
+          <p style="margin-bottom: 0;">PIB(JIB): <strong>4509230960008</strong></p>
+      </div>
+  </div>
+</div>
+<div class="content-section" id="print-template">
+  <h6 class="text-center p-3 mb-1" style="background-color: #f2f2f2; padding: 5px; border-radius: 5px;">
+  <u><strong>DNEVNI LIST SANKA</strong></u>
+  </h6>
+</div>
+  
+  <div class="content-section">
+      <table class="table table-striped table-bordered table-hover" "text-center table-print">
+          <thead class="table" "text-center" style="background-color: #1f2877;  color: #ffffff;">
+            <tr class="text-center">
+              <th scope="col">id</th>
+              <th scope="col">nome</th>
+              <th scope="col">u.m.</th> 
+              <th scope="col">actual stock</th>
+              <th scope="col">load </th>
+              <th scope="col">actStock+load</th> 
+              <th scope="col">sold</th>
+              <th scope="col">(as+l)-sold</th>
+              <th scope="col">V-M</th>
+              <th scope="col">revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in report %}
+              <tr class="text-center" style='cursor: pointer; cursor: hand;'>
+                <th scope="row">{{ forloop.counter }}</th>
+                <th scope="col">{{ item.name }}</th>
+                <th scope="col">{{ item.unit_of_measure }}</th>
+                <th scope="col">{{ item.actual_stock }}</th>
+                <th scope="col">{{ item.daily_load }}</th>
+                <th scope="col">{{ item.daily_stock }}</th>
+                <th scope="col">{{ item.daily_sales }}</th>
+                <th scope="col">{{ item.tot_daily }}</th>
+                <th scope="col">0</th>
+                <th scope="col">{{ item.daily_revenue }}</th>
+                </th>
+              </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+      <div class="form-group pt-4 no-print">
+          <button id="print-button" class="btn btn-outline-success no-prin" type="submit">Print</button>
+      </div>
+      <script>
+        var printButton = document.getElementById("print-button");
+        printButton.addEventListener("click", function(){
+            var elementsToHide = document.getElementsByClassName("no-print");
+            for (var i = 0; i < elementsToHide.length; i++) {
+                elementsToHide[i].classList.add("hide-element");
+            }
+            window.print();
+            for (var i = 0; i < elementsToHide.length; i++) {
+                elementsToHide[i].classList.remove("hide-element");
+            }
+        });
+    </script>
+  </div>
+</div>
+{% endblock %}
