@@ -1,0 +1,1 @@
+web guinicorn inventories.wsgi:application --log-file -
