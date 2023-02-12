@@ -1,12 +1,12 @@
 {% extends "../layout.html" %}
-{% block title %}Register{% endblock %}
+{% block title %}Registrirajte se{% endblock %}
 {% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
 <head>
 <link rel="stylesheet" href="{% static 'registration.css' %}">
-<h1 class="text-center">Register</h1>
+<h1 class="text-center">Registrirajte se</h1>
 <form method="POST" action="">
   {% csrf_token %}
   <div class="form-group">

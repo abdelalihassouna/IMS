@@ -6,7 +6,7 @@
 
       <div class="card m-4" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title text-center">Product Name</h5>
+          <h5 class="card-title text-center">ime proizvoda</h5>
           <div style="font-size: 30px;" class="text-center">
             <span><i class="fab fa-product-hunt"></i></span>
           </div>
@@ -16,7 +16,7 @@
 
       <div class="card m-4" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title text-center">Quantity In Stock</h5>
+          <h5 class="card-title text-center">Količina na zalihama</h5>
           <div style="font-size: 30px;" class="text-center">
             <span><i class="fas fa-warehouse"></i></span>
           </div>
@@ -26,7 +26,7 @@
 
       <div class="card m-4" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title text-center">Quantity Sold</h5>
+          <h5 class="card-title text-center">Prodana količina</h5>
           <div style="font-size: 30px;" class="text-center">
             <span><i class="fas fa-warehouse"></i></span>
           </div>
@@ -36,7 +36,7 @@
 
       <div class="card m-4" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title text-center">Price Per {{ inventory.name }}</h5>
+          <h5 class="card-title text-center">Cijena po {{ inventory.name }}</h5>
           <div style="font-size: 30px;" class="text-center">
             <span><i class="fas fa-dollar-sign"></i></span>
           </div>
@@ -46,7 +46,7 @@
 
       <div class="card m-4" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title text-center">Sales Or Revenue</h5>
+          <h5 class="card-title text-center">Prodaja ili prihod</h5>
           <div style="font-size: 30px;" class="text-center">
             <span><i class="fas fa-dollar-sign"></i></span>
           </div>
@@ -56,7 +56,7 @@
 
       <div class="card m-4" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title text-center">Stock Date</h5>
+          <h5 class="card-title text-center">Datum zaliha</h5>
           <div style="font-size: 30px;" class="text-center">
             <span><i class="fas fa-calendar-alt"></i></span>
           </div>
@@ -66,7 +66,7 @@
 
       <div class="card m-4" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title text-center">Last Sales Date</h5>
+          <h5 class="card-title text-center">Datum posljednje prodaje</h5>
           <div style="font-size: 30px;" class="text-center">
             <span><i class="fas fa-calendar-alt"></i></span>
           </div>
@@ -74,8 +74,8 @@
         </div>
       </div>
 
-      <a href="{% url 'product_update' inventory.id %}" class="btn btn-outline-success btn-sm mb-2">Update</a>
-      <a href="{% url 'product_delete' inventory.id %}" class="btn btn-danger btn-sm mb-2">Delete</a>
+      <a href="{% url 'product_update' inventory.id %}" class="btn btn-outline-success btn-sm mb-2">Ažuriraj</a>
+      <a href="{% url 'product_delete' inventory.id %}" class="btn btn-danger btn-sm mb-2">Izbriši</a>
   </div>
 </div>
 {% endblock %}

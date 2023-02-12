@@ -1,5 +1,5 @@
 {% extends "../layout.html" %}
-{% block title %}Login{% endblock %}
+{% block title %}Ulogovati se{% endblock %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
@@ -8,13 +8,13 @@
     {{ form.media }}
     <form method='POST'>
         <fieldset>
-            <legend class="borde_bottom pd-2 mb-4 text-center">Login Alfredo Bar</legend>
+            <legend class="borde_bottom pd-2 mb-4 text-center">Prijava Alfredo Bar</legend>
             {% csrf_token %}
             <div class="form-group">
                 {{ form|crispy}}
             </div>
             <div class="form-group">
-                <button class="btn btn-outline-success" type="submit" >Login</button>
+                <button class="btn btn-outline-success" type="submit" >Ulogovati se</button>
             </div>
             {% if form.errors %}
                 <div class="alert alert-danger" role="alert">
