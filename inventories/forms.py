@@ -3,6 +3,7 @@ from .models import Inventory, Sales, StockLoad
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from datetime import date
 
 class InventoryUpdateForm(ModelForm):
     class Meta:
@@ -15,7 +16,7 @@ class AddInventoryForm(ModelForm):
         fields = ["name", "cost_per_item", "quantity_in_stock"]
 
 class SalesForm(ModelForm):
-    sold_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True)
+    sold_date = forms.DateField(initial=date.today() ,widget=forms.DateInput(attrs={'type': 'date'}), required=True)
     class Meta:
         model = Sales
         fields = ['name', 'qty_sold', 'sold_date']
@@ -24,7 +25,7 @@ class SalesForm(ModelForm):
         instance.delete()
 
 class StockLoadForm(ModelForm):
-    load_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True)
+    load_date = forms.DateField(initial=date.today() ,widget=forms.DateInput(attrs={'type': 'date'}), required=True)
     class Meta:
         model = StockLoad
         fields =  ['name', 'quantity_loaded', 'load_date']

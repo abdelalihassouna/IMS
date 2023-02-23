@@ -16,31 +16,34 @@
    />
 </head>
 <body class="dark-bg">
-    <nav class="navbar navbar-expand-lg navbar-dark no-prin" style="background-color: #1f2877;">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'inventorylist' %}">IMS</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark no-prin" style="background-color: #1f2877;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'inventorylist' %}">IMS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              {% if request.user.is_authenticated and request.user.role == 'employees'%}
-                <a class="nav-link" aria-current="page" href="{% url 'sales' %}"><i class="fa fa-sack-dollar"></i> Sales</a>
-                <a class="nav-link " href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> LogOut</a>
-              {% elif request.user.is_authenticated %}
-                <a class="nav-link" aria-current="page" href="{% url 'inventorylist' %}"><i class="fa fa-house-user"></i> Inventory</a>
-                <a class="nav-link" aria-current="page" href="{% url 'product_add' %}"><i class="fa fa-plus"></i> Add</a>
-                <a class="nav-link" aria-current="page" href="{% url 'dashboard' %}"><i class="fas fa-chart-line"></i> Dashboard</a>
-                <a class="nav-link" aria-current="page" href="{% url 'sales' %}"><i class="fa fa-sack-dollar"></i> Sales</a>
-                <a class="nav-link" aria-current="page" href="{% url 'stock_load' %}"><i class="fa fa-truck-ramp-box"></i> Load</a>
-                <a class="nav-link" aria-current="page" href="{% url 'report' %}"><i class="fa fa-print"></i> Daily</a>
-                <a class="nav-link" aria-current="page" href="{% url 'admin:index' %}"><i class="fa fa-lock"></i> Admin</a>
-                <a class="nav-link " href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> LogOut</a>
-              {% endif %}
+                {% if request.user.is_authenticated and request.user.groups.first.name == 'employees' %}
+                    <a class="nav-link" aria-current="page" href="{% url 'sales' %}"><i class="fa fa-sack-dollar"></i> Sales</a>
+                    <a class="nav-link " href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> LogOut</a>
+                    <li class="nav-item ms-auto"><a class="nav-link" href="#"><i class="fas fa-user "> </i> {{ request.user.username }}:{{ request.user.groups.first.name }}</a></li>
+                {% elif request.user.is_authenticated %}
+                    <a class="nav-link" aria-current="page" href="{% url 'inventorylist' %}"><i class="fa fa-house-user"></i> Inventory</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'product_add' %}"><i class="fa fa-plus"></i> Add</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'dashboard' %}"><i class="fas fa-chart-line"></i> Dashboard</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'sales' %}"><i class="fa fa-sack-dollar"></i> Sales</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'stock_load' %}"><i class="fa fa-truck-ramp-box"></i> Load</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'report' %}"><i class="fa fa-print"></i> Daily</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'admin:index' %}"><i class="fa fa-lock"></i> Admin</a>
+                    <a class="nav-link " href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> LogOut</a>
+                    <li class="nav-item ms-auto"><a class="nav-link" href="#"><i class="fas fa-user "> </i> {{ request.user.username }}:{{ request.user.groups.first.name }}</a></li>
+                {% endif %}
             </div>
-          </div>
         </div>
-    </nav>
+    </div>
+  </nav>
+
 
     <main class="main-content">
       <div class="container-fluid">

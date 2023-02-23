@@ -70,3 +70,8 @@ table.table-print {
     background-color: #0069d9;
     box-shadow: 0px 0px 20px rgba(0,105,217,0.5);
 }
+
+.btn-primary:active {
+    background-color: #0062cc;
+    box-shadow: 0px 0px 20px rgba(0,98,204,0.5);
+}

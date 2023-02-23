@@ -224,9 +224,10 @@ def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+        role = request.POST.get('group')
+        user = authenticate(request, username=username, password=password, role=role)
         if user is not None:
-            login(request, user)
+            login(request, user, role)
             return redirect('/inventory')
         else:
             messages.info(request, 'Username OR password is incorrect')
@@ -269,7 +270,8 @@ def userProfile(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        role = request.POST['role']
+        user = authenticate(request, username=username, password=password, role=role)
         if user is not None and user.role == 'employees':
             login(request, user)
             return redirect('sales')
