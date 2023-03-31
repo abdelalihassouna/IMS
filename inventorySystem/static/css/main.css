@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     height: 100vh;
     width: 100%;
@@ -16,11 +17,6 @@ body {
     padding: 0;
 }
 
-/* body {
-  background-image: url('inventorySystem\\inventorySystem\\static\\img\\header.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
 .content.section {
     background: #fff;
     padding: 20px;

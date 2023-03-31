@@ -1,7 +1,7 @@
-{% load static %}
+{% comment %} {% load static %} {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head calss="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/f830f3e202.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css">
+    {% comment %} <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css"> {% endcomment %}
      <!-- fontawesome settings -->
     <link
      rel="stylesheet"
@@ -26,8 +26,10 @@
             <div class="navbar-nav">
                 {% if request.user.is_authenticated and request.user.groups.first.name == 'employees' %}
                     <a class="nav-link" aria-current="page" href="{% url 'sales' %}"><i class="fa fa-sack-dollar"></i> Sales</a>
-                    <a class="nav-link " href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> LogOut</a>
-                    <li class="nav-item ms-auto"><a class="nav-link" href="#"><i class="fas fa-user "> </i> {{ request.user.username }}:{{ request.user.groups.first.name }}</a></li>
+                    <a class="nav-link " href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> LogOut</a>  
+                    <div class="nav-item ml-auto">
+                        <a class="nav-link px-3" href="#"><i class="fas fa-user"></i> {{ request.user.username }}:{{ request.user.groups.first.name }}</a>
+                    </div>
                 {% elif request.user.is_authenticated %}
                     <a class="nav-link" aria-current="page" href="{% url 'inventorylist' %}"><i class="fa fa-house-user"></i> Inventory</a>
                     <a class="nav-link" aria-current="page" href="{% url 'product_add' %}"><i class="fa fa-plus"></i> Add</a>
@@ -36,14 +38,14 @@
                     <a class="nav-link" aria-current="page" href="{% url 'stock_load' %}"><i class="fa fa-truck-ramp-box"></i> Load</a>
                     <a class="nav-link" aria-current="page" href="{% url 'report' %}"><i class="fa fa-print"></i> Daily</a>
                     <a class="nav-link" aria-current="page" href="{% url 'admin:index' %}"><i class="fa fa-lock"></i> Admin</a>
+                    <a class="nav-link " href="{% url 'upload_pdf' %}"><i class="fa fa-upload"></i> Upload</a>
                     <a class="nav-link " href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> LogOut</a>
-                    <li class="nav-item ms-auto"><a class="nav-link" href="#"><i class="fas fa-user "> </i> {{ request.user.username }}:{{ request.user.groups.first.name }}</a></li>
+                    <li class="nav-item ms-auto"><a class="nav-link" href="#"><i class="fas fa-user "> </i> {{ request.user.username }}:{{ request.user.groups.first.name }} </a></li>
                 {% endif %}
             </div>
         </div>
     </div>
   </nav>
-
 
     <main class="main-content">
       <div class="container-fluid">

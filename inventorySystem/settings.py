@@ -83,20 +83,16 @@ WSGI_APPLICATION = 'inventorySystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASE_URL = os.getenv('DATABASE_URL')
 DATABASES = {
-    'default': dj_database_url.parse("postgres://alfredodb_user:4k8gopsh9kZwS3ZUMxOqoTekOPfeo5on@dpg-cfkdf61mbjsn9ebqg0l0-a.oregon-postgres.render.com/alfredodb"),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
+# DATABASE_URL = os.getenv('DATABASE_URL')
 # DATABASES = {
-#     'default': dj_database_url.parse(os.environ.get("postgres://alfredodb_user:4k8gopsh9kZwS3ZUMxOqoTekOPfeo5on@dpg-cfkdf61mbjsn9ebqg0l0-a.oregon-postgres.render.com/alfredodb")),
+#     'default': dj_database_url.parse("postgres://alfredodb_user:4k8gopsh9kZwS3ZUMxOqoTekOPfeo5on@dpg-cfkdf61mbjsn9ebqg0l0-a.oregon-postgres.render.com/alfredodb"),
 # }
 
 

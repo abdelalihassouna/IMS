@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.views.decorators.cache import never_cache
 from django.contrib.auth.models import Group
 from django.contrib.auth import login, logout, authenticate
 from .models import Inventory
@@ -27,6 +28,11 @@ from django.views import generic
 from .decorators import *
 import requests
 from django.conf import settings
+import pdfminer.high_level
+import io
+import pytesseract
+from PIL import Image
+import re
 
 @login_required(login_url='login')
 @admin_only
@@ -215,9 +221,16 @@ def daily_print(request):
     daily_revenue=(F('cost_per_item')*F('daily_sales')),
     tot_daily = F('daily_stock')-F('daily_sales')
 ).values('name', 'unit_of_measure' ,'actual_stock', 'daily_load', 'daily_stock','daily_sales', 'tot_daily', 'daily_revenue')
+    # Calcola il totale delle vendite giornaliere
+    total_daily_sales = inventory.aggregate(total=Sum('daily_sales'))['total']
 
+    # Aggiungi il totale alla fine della lista inventory
+    inventory = list(inventory)
+    inventory.append({'name': 'Totale', 'daily_sales': total_daily_sales})
+    
     return render(request, "inventories/print.html",  {'report': inventory, 'today':today})
 
+@never_cache
 @unauthenticated_user
 def login(request):
     # non funziona devo capire perchè
@@ -260,7 +273,8 @@ def register(request):
 
     context = {'form': form}
     return render(request, "inventory_system/register.html", context)
-                
+
+@never_cache                
 def logoutUser(request):
     logout(request)
     return redirect('login')
@@ -279,3 +293,42 @@ def userProfile(request):
             return render(request, 'login.html', {'error': 'Invalid login credentials'})
     else:
         return render(request, 'inventory_system/profile.html')
+
+# def upload_pdf(request):
+#     if request.method == 'POST':
+#         pdf_file = request.FILES['pdf_file']
+#         text = extract_text_from_pdf(pdf_file)
+#         product_data = extract_product_data(text)
+#         save_products_to_stock(product_data)
+#         messages.success(request, 'Prodotti caricati correttamente.')
+#     return render(request, 'inventories/upload_pdf.html')
+
+# def extract_text_from_pdf(pdf_file):
+#     with io.BytesIO(pdf_file.read()) as pdf_buffer:
+#         extracted_text = pdfminer.high_level.extract_text(pdf_buffer)
+#     return extracted_text
+
+# def extract_product_data(text):
+#     product_data = []
+#     for line in text.splitlines():
+#         if line.startswith('Prodotto'):
+#             product = {}
+#             product['name'] = line.split(':')[1].strip()
+#         elif line.startswith('Descrizione'):
+#             product['description'] = line.split(':')[1].strip()
+#         elif line.startswith('Prezzo'):
+#             product['price'] = line.split(':')[1].strip()
+#         elif line.startswith('Quantità'):
+#             product['quantity'] = int(line.split(':')[1].strip())
+#             product_data.append(product)
+#     return product_data
+
+# def save_products_to_stock(product_data):
+#     for product in product_data:
+#         # Crea un oggetto di prodotto e salvalo nel database
+#         p = Product(name=product['name'], description=product['description'], price=product['price'])
+#         p.save()
+#         # Aggiungi il prodotto al magazzino e aggiorna la quantità disponibile
+#         s, created = Stock.objects.get_or_create(product=p)
+#         s.quantity += product['quantity']
+#         s.save()
